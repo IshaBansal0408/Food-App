@@ -1,30 +1,42 @@
 package com.example.FoodApp.Models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Item {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private int productId;
 	private String name;
 	private String type;
 	private int quantity;
 	private double price;
 	
+	
+	@ManyToOne
+	@JoinColumn
 	FoodOrder foodOrder;
 	
+	public FoodOrder getFoodOrder() {
+		return foodOrder;
+	}
+
+	public void setFoodOrder(FoodOrder foodOrder) {
+		this.foodOrder = foodOrder;
+	}
+
 	public int getId() {
 		return id;
 	}
 	
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public int getProductId() {
-		return productId;
-	}
-	
-	public void setProductId(int productId) {
-		this.productId = productId;
 	}
 	
 	public String getName() {

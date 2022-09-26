@@ -1,7 +1,17 @@
 package com.example.FoodApp.Models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class FoodProduct {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String type;
@@ -9,8 +19,18 @@ public class FoodProduct {
 	private boolean availability;
 	private double price;
 	
+	@ManyToOne
+	@JoinColumn
 	Menu menu;
 	
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
 	public int getId() {
 		return id;
 	}

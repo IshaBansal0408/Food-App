@@ -2,6 +2,12 @@ package com.example.FoodApp.Models;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+
+@Entity
 public class User {
 	
 	private int id;
@@ -10,10 +16,39 @@ public class User {
 	private String password;
 	private String role;
 	
+	@OneToOne(mappedBy = "user")
 	Menu menu;
+	
+	@OneToMany(mappedBy = "user")
 	List<Branch> branches;
+	
+	@OneToMany(mappedBy = "user")
 	List<FoodOrder> foodOrders;
 	
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
+	public List<Branch> getBranches() {
+		return branches;
+	}
+
+	public void setBranches(List<Branch> branches) {
+		this.branches = branches;
+	}
+
+	public List<FoodOrder> getFoodOrders() {
+		return foodOrders;
+	}
+
+	public void setFoodOrders(List<FoodOrder> foodOrders) {
+		this.foodOrders = foodOrders;
+	}
+
 	public int getId() {
 		return id;
 	}
