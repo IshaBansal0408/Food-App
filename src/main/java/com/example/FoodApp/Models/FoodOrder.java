@@ -2,8 +2,18 @@ package com.example.FoodApp.Models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class FoodOrder {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private boolean status;
 	private double totalPrice;
@@ -12,8 +22,18 @@ public class FoodOrder {
 	private String customerName;
 	private long contactNumber;
 	
+	@ManyToOne
+	@JoinColumn
 	User user;
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public int getId() {
 		return id;
 	}
