@@ -30,6 +30,18 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<FoodOrder> foodOrders;
 	
+	public User(int id, String name, String email, String password, String role, Menu menu, List<Branch> branches,
+			List<FoodOrder> foodOrders) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.menu = menu;
+		this.branches = branches;
+		this.foodOrders = foodOrders;
+	}
+
 	public Menu getMenu() {
 		return menu;
 	}
@@ -93,5 +105,13 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	@Override
+	public String toString() {
+		return "User [branches=" + branches + ", email=" + email + ", foodOrders=" + foodOrders + ", id=" + id
+				+ ", menu=" + menu + ", name=" + name + ", password=" + password + ", role=" + role + "]";
+	}
+
+
 
 }
