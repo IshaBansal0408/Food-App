@@ -26,15 +26,14 @@ public class UserDao {
 	 }
 
 	// 3. Update a user
-	public User updateUser(int id, User user) {
-		user.setId(id);
+	public User updateUser(User user) {
 		userRepository.save(user);
 		return user;
 	}
 
 	// 4. Delete a user
-	public void deleteUser(int id) {
-		userRepository.deleteById(id);
+	public void deleteUser(User user) {
+		userRepository.delete(user);
 	}
 
 	// 5. Read all users
@@ -44,12 +43,12 @@ public class UserDao {
 	}
 	
 	 // 6. Get List of all Staff members
-	 public List<User> getStaff() {
+	 public List<User> getAllStaff() {
 	 	return userRepository.getAllStaffs("Staff");
 	 }
 
 	 // 7. Login user
-	 public User LoginUser(String email, String password) {
+	 public User loginUser(String email, String password) {
 	 	return userRepository.getByEmailAndPassword(email, password);
 	 }
 
