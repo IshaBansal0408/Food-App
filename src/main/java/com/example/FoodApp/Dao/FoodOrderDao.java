@@ -31,8 +31,7 @@ public class FoodOrderDao {
 	}
 	
 	// 4. Update Food Order Details
-	public FoodOrder updateFoodOrder(int id, FoodOrder foodOrder) {
-		foodOrder.setId(id);
+	public FoodOrder updateFoodOrder(FoodOrder foodOrder) {
 		foodOrderRepository.save(foodOrder);
 		return foodOrder;
 	}
