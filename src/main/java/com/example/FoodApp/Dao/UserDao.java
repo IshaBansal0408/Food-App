@@ -3,10 +3,12 @@ package com.example.FoodApp.Dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.example.FoodApp.Models.User;
 import com.example.FoodApp.Repository.UserRepository;
 
+@Repository
 public class UserDao {
 
     @Autowired
