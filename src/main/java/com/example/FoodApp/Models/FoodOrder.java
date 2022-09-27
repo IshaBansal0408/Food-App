@@ -1,13 +1,16 @@
 package com.example.FoodApp.Models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class FoodOrder {
@@ -22,9 +25,13 @@ public class FoodOrder {
 	private String customerName;
 	private long contactNumber;
 	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "foodOrder")
+	List<Item> items;
+	
 	@ManyToOne
 	@JoinColumn
 	User user;
+	
 	
 	public User getUser() {
 		return user;
