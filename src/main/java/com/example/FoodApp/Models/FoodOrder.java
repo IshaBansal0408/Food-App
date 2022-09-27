@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class FoodOrder {
 
@@ -25,13 +28,14 @@ public class FoodOrder {
 	private String customerName;
 	private long contactNumber;
 	
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "foodOrder")
 	List<Item> items;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn
 	User user;
-	
 	
 	public User getUser() {
 		return user;

@@ -38,8 +38,7 @@ public class UserDao {
 
 	// 5. Read all users
 	public List<User> getAllUsers() {
-		List<User> allUsers = (List<User>) userRepository.findAll();
-		return allUsers;
+		return userRepository.findAll();
 	}
 	
 	 // 6. Get List of all Staff members

@@ -37,7 +37,7 @@ public class FoodOrderController {
 		return foodOrderService.getFoodOrder(userId); 
 	}
 	//FoodOrder by FoodOrder ID
-	@GetMapping("/foodorderbyitsid/{foodOrderId}")
+	@GetMapping("/foodorderbyid/{foodOrderId}")
 	public ResponseEntity<ResponseStructure<FoodOrder>> getFoodOrderByItsId(@PathVariable int foodOrderId) {
 		return foodOrderService.getFoodOrderByItsId(foodOrderId); 
 	}

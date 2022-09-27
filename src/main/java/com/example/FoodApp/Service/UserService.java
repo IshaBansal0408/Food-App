@@ -13,6 +13,7 @@ import com.example.FoodApp.Models.Menu;
 import com.example.FoodApp.Models.User;
 import com.example.FoodApp.util.ResponseStructure;
 
+
 @Service
 public class UserService {
 	
@@ -22,7 +23,7 @@ public class UserService {
 	public ResponseEntity<ResponseStructure<User>> saveUser(User user) {
 		ResponseStructure<User> structure = new ResponseStructure<>();
 		structure.setError(false);
-		structure.setMessage(user.getName() + "saved");
+		structure.setMessage(user.getName() + " saved");
 		structure.setData(userDao.addUser(user));
 		return new ResponseEntity<ResponseStructure<User>>(structure, HttpStatus.OK);
 	}
@@ -49,6 +50,27 @@ public class UserService {
 			structure.setData(userDao.getAllStaff());
 		
 		return new ResponseEntity<ResponseStructure<List<User>>>(structure, HttpStatus.OK);
+	}
+	
+	public ResponseEntity<ResponseStructure<List<User>>> getUsers(){
+		ResponseStructure<List<User>> structure = new ResponseStructure<>();
+			structure.setError(false);
+			structure.setMessage("User Found");
+			structure.setData(userDao.getAllUsers());
+		
+		return new ResponseEntity<ResponseStructure<List<User>>>(structure, HttpStatus.OK);
+		//ResponseStructure<List<User>> structure=new ResponseStructure<List<User>>();
+//		List<User> list = userDao.getAllUsers();
+//		if(list.isEmpty()) {
+//			structure.setError(true);
+//			structure.setMessage("User not Found");
+//			structure.setData(null);
+//		}else {
+//			structure.setError(false);
+//			structure.setMessage("Users found");
+//			structure.setData(list);
+//		}
+//		return structure;
 	}
 	
 	public ResponseEntity<ResponseStructure<User>> login(String email, String password){

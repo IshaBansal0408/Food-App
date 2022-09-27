@@ -24,14 +24,20 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@GetMapping("/all")
+	public ResponseEntity<ResponseStructure<List<User>>> getAllUsers() {
+		return userService.getUsers();
+	}
+	
+
+	@GetMapping("/getallstaffs")
+	public ResponseEntity<ResponseStructure<List<User>>> getAllStaffs() {
+		return userService.getAllStaffs();
+	}
+	
 	@PostMapping("/user")
 	public ResponseEntity<ResponseStructure<User>> saveUser(@RequestBody User user){
 		return userService.saveUser(user);
-	}
-	
-	@PostMapping("/login")
-	public ResponseEntity<ResponseStructure<User>> login(@RequestBody User user) {
-		return userService.login(user.getEmail(),user.getPassword());
 	}
 	
 	@GetMapping("/user/{userId}")
@@ -39,15 +45,8 @@ public class UserController {
 		return userService.getUserById(userId);
 	}
 	
-	@GetMapping("/user")
-	public ResponseEntity<ResponseStructure<User>> getAllUsers(@PathVariable int userId) {
-		return userService.getUserById(userId);
-	}
 	
-	@GetMapping("/getallstaffs")
-	public ResponseEntity<ResponseStructure<List<User>>> getAllStaffs() {
-		return userService.getAllStaffs();
-	}
+	
 	
 	@PutMapping("/user")
 	public ResponseEntity<ResponseStructure<User>> updateUser(@RequestBody User user){
@@ -59,4 +58,9 @@ public class UserController {
 		return userService.deleteUser(userId);
 	}
 
+	
+//	@PostMapping("/login")
+//	public ResponseEntity<ResponseStructure<User>> login(@RequestBody User user) {
+//		return userService.login(user.getEmail(),user.getPassword());
+//	}
 }

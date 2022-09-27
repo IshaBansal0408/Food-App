@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class User {
@@ -23,25 +26,29 @@ public class User {
 	private String role;
 	
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonIgnore
 	Menu menu;
+//	
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	List<Branch> branches;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	List<Branch> branches;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonIgnore
 	List<FoodOrder> foodOrders;
 	
-	public User(int id, String name, String email, String password, String role, Menu menu, List<Branch> branches,
-			List<FoodOrder> foodOrders) {
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.menu = menu;
-		this.branches = branches;
-		this.foodOrders = foodOrders;
-	}
+//	public User(int id, String name, String email, String password, String role, Menu menu, List<Branch> branches,
+//			List<FoodOrder> foodOrders) {
+//		this.id = id;
+//		this.name = name;
+//		this.email = email;
+//		this.password = password;
+//		this.role = role;
+//		this.menu = menu;
+//		this.branches = branches;
+//		this.foodOrders = foodOrders;
+//	}
 
 	public Menu getMenu() {
 		return menu;
@@ -50,14 +57,14 @@ public class User {
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
-
-	public List<Branch> getBranches() {
-		return branches;
-	}
-
-	public void setBranches(List<Branch> branches) {
-		this.branches = branches;
-	}
+//
+//	public List<Branch> getBranches() {
+//		return branches;
+//	}
+//
+//	public void setBranches(List<Branch> branches) {
+//		this.branches = branches;
+//	}
 
 	public List<FoodOrder> getFoodOrders() {
 		return foodOrders;
@@ -107,11 +114,11 @@ public class User {
 		this.role = role;
 	}
 
-	@Override
-	public String toString() {
-		return "User [branches=" + branches + ", email=" + email + ", foodOrders=" + foodOrders + ", id=" + id
-				+ ", menu=" + menu + ", name=" + name + ", password=" + password + ", role=" + role + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "User [branches=" + branches + ", email=" + email + ", foodOrders=" + foodOrders + ", id=" + id
+//				+ ", menu=" + menu + ", name=" + name + ", password=" + password + ", role=" + role + "]";
+//	}
 
 
 
