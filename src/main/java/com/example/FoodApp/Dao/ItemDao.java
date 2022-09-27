@@ -14,10 +14,12 @@ public class ItemDao {
 	@Autowired
 	ItemRepository itemRepository;
 	
+	// 1. Add Item
 	public Item addItem(Item item) {
 		return itemRepository.save(item);
 	}
 	
+	// 2. Get Item by ID
 	public Optional<Item> getItemById(int id) {
 		return itemRepository.findById(id);
 	}
