@@ -13,6 +13,7 @@ import com.example.FoodApp.Service.ItemService;
 import com.example.FoodApp.util.ResponseStructure;
 
 @RestController
+@CrossOrigin
 public class ItemController {
     @Autowired
     ItemService itemService;
