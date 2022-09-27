@@ -2,6 +2,7 @@ package com.example.FoodApp.Models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,13 +22,13 @@ public class User {
 	private String password;
 	private String role;
 	
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	Menu menu;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	List<Branch> branches;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	List<FoodOrder> foodOrders;
 	
 	public User(int id, String name, String email, String password, String role, Menu menu, List<Branch> branches,
