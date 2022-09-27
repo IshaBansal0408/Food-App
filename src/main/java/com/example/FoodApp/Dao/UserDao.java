@@ -1,6 +1,7 @@
 package com.example.FoodApp.Dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,10 +20,10 @@ public class UserDao {
 		return userRepository.save(user);
 	}
 
-	// // 2. Read a particular Users
-	// public Optional<User> getUserById(int id) {
-	// 	return userRepository.findById(id);
-	// }
+	 // 2. Read a particular Users
+	 public Optional<User> getUserById(int id) {
+	 	return userRepository.findById(id);
+	 }
 
 	// 3. Update a user
 	public User updateUser(int id, User user) {
@@ -32,10 +33,8 @@ public class UserDao {
 	}
 
 	// 4. Delete a user
-	public User deleteUser(int id) {
-		User u = userRepository.findById(id);
-		userRepository.delete(u);
-		return u;
+	public void deleteUser(int id) {
+		userRepository.deleteById(id);
 	}
 
 	// 5. Read all users
@@ -44,14 +43,14 @@ public class UserDao {
 		return allUsers;
 	}
 	
-	// // 6. Get List of all Staff members
-	// public List<User> getStaff() {
-	// 	return userRepository.getAllStaffs("Staff");
-	// }
+	 // 6. Get List of all Staff members
+	 public List<User> getStaff() {
+	 	return userRepository.getAllStaffs("Staff");
+	 }
 
-	// // 7. Login user
-	// public User LoginUser(String email, String password) {
-	// 	return userRepository.getByEmailAndPassword(email, password);
-	// }
+	 // 7. Login user
+	 public User LoginUser(String email, String password) {
+	 	return userRepository.getByEmailAndPassword(email, password);
+	 }
 
 }

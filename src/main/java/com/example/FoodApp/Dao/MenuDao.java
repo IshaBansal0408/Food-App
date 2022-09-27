@@ -29,8 +29,8 @@ public class MenuDao {
 		menuRepository.deleteById(id);
 	}
 	
-	// // 4. Get Menu of a Manager
-	// public Menu getMenuByManagerId(int mId) {
-	// 	return menuRepository.getMenuByManagerId(mId);
-	// }
+	 // 4. Get Menu of a Manager
+	 public Menu getMenuByManagerId(int mId) {
+	 	return menuRepository.getMenuByManagerId(mId);
+	 }
 }

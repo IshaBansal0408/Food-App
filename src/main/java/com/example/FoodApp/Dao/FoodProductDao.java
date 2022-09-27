@@ -35,8 +35,8 @@ public class FoodProductDao {
 		foodProductRepository.deleteById(id);
 	}
 
-	// // 5. Get Food Products Present in Menu
-	// public List<FoodProduct> getMenuFoodProducts(int menuId){
-	// 	return foodProductRepository.getFoodProductsInMenu(menuId);
-	// }
+	 // 5. Get Food Products Present in Menu
+	 public List<FoodProduct> getMenuFoodProducts(int menuId){
+	 	return foodProductRepository.getFoodProductsInMenu(menuId);
+	 }
 }
