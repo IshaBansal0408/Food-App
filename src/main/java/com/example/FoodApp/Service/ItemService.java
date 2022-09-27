@@ -27,26 +27,33 @@ public class ItemService {
     
     public ResponseEntity<ResponseStructure<Item>> saveItem(Item item, int foodOrderId){
         Optional<FoodProduct> foodProductOptional = foodProductDao.getFoodProductById(item.getId());
+        ResponseStructure<Item> structure = null;
+        if(foodProductOptional!=null) {
+        	
         
-        ResponseStructure<Item> structure=new ResponseStructure<>();
-        item.setId(foodProductOptional.get().getId());
-        item.setName(foodProductOptional.get().getName());
-        item.setType(foodProductOptional.get().getType());
-        item.setPrice(foodProductOptional.get().getPrice());
-        System.out.println(foodProductOptional.get().getId());
-        System.out.println(foodOrderId);
-        Optional<FoodOrder> foodOptional = foodOrderDao.getFoodOrderById(foodOrderId);
-        if(foodOptional.isEmpty()){
-            System.out.print("No id found");
-            
-        }else {
-          item.setFoodOrder(foodOptional.get());
-          structure.setError(false);
-            structure.setMessage("Item is added");
-            structure.setData(itemDao.addItem(item));
+	         structure=new ResponseStructure<>();
+	        item.setId(foodProductOptional.get().getId());
+	        item.setName(foodProductOptional.get().getName());
+	        item.setType(foodProductOptional.get().getType());
+	        item.setPrice(foodProductOptional.get().getPrice());
+	        System.out.println(foodProductOptional.get().getId());
+	        System.out.println(foodOrderId);
+	        Optional<FoodOrder> foodOptional = foodOrderDao.getFoodOrderById(foodOrderId);
+	        if(foodOptional.isEmpty()){
+	            System.out.print("No id found");
+	            
+	        }else {
+	          item.setFoodOrder(foodOptional.get());
+	          structure.setError(false);
+	            structure.setMessage("Item is added");
+	            structure.setData(itemDao.addItem(item));
+	        }
+	                
+	        return new ResponseEntity<ResponseStructure<Item>>(structure, HttpStatus.OK);
         }
-                
-        return new ResponseEntity<ResponseStructure<Item>>(structure, HttpStatus.OK);
+        else {
+        	return new ResponseEntity<ResponseStructure<Item>>(structure, HttpStatus.NOT_FOUND);
+        }
         
     }
 

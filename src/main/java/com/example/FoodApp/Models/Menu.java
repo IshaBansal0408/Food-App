@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class Menu {
@@ -19,7 +21,7 @@ public class Menu {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
 	List<FoodProduct> foodProducts;
 	
