@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.FoodApp.Dao.MenuDao;
 import com.example.FoodApp.Dao.UserDao;
 import com.example.FoodApp.Models.Menu;
 import com.example.FoodApp.Models.User;
@@ -19,9 +20,25 @@ public class UserService {
 	
 	@Autowired
 	UserDao userDao;
+
+	@Autowired
+	MenuDao menuDao;
 	
 	public ResponseEntity<ResponseStructure<User>> saveUser(User user) {
 		ResponseStructure<User> structure = new ResponseStructure<>();
+		
+		// If the user being added is a Branch Manager
+		if (user.getRole().equals("BranchManager")) {
+			// We assign an empty Menu by default to the user
+			Menu menu = new Menu();
+			// set the user of the menu
+			menu.setUser(user);
+			// Add the menu to the MenuDao as well
+			menu = menuDao.addMenu(menu);
+			// Assign the menu to the branch manager
+			user.setMenu(menu);
+		}
+		
 		structure.setError(false);
 		structure.setMessage(user.getName() + " saved");
 		structure.setData(userDao.addUser(user));
